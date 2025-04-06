@@ -1,0 +1,10 @@
+.itemMenu{
+    border-radius: 5px;
+    width: 200px !important;
+    font-weight: bold !important;
+    padding: 5px;
+}
+.itemMenu.active{
+    background-color: palevioletred !important;
+    color: white !important;
+}
