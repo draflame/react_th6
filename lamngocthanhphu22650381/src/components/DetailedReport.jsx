@@ -6,11 +6,20 @@ import { GoPencil } from "react-icons/go";
 import { PiLessThan } from "react-icons/pi";
 import { PiGreaterThan } from "react-icons/pi";
 import { FaRegUserCircle } from "react-icons/fa";
-
+import EditModal from "./EditModel";
 const DetailedReport = () => {
   // State for users
   const [users, setUsers] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingUser, setEditingUser] = useState(null);
+  const handleEditUser = (user) => {
+    setEditingUser(user);
+    setIsModalOpen(true);
+  };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   // Fetch data when component mounts
   useEffect(() => {
     const fetchData = async () => {
@@ -106,7 +115,7 @@ const DetailedReport = () => {
                   {getStatusBadge(user.status)}
                 </td>
                 <td>
-                  <button>
+                  <button onClick={() => handleEditUser(user)}>
                     <GoPencil />
                   </button>
                 </td>
@@ -115,6 +124,11 @@ const DetailedReport = () => {
           </tbody>
         </table>
       </div>
+      <EditModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        user={editingUser}
+      />
       <div className="footer-detailed-report">
         <p>63 results</p>
         <div className="number-page-navigation">
