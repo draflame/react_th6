@@ -7,14 +7,21 @@
       list-style: none;
       padding: 10px;
       border-radius: 10px;
+      margin-bottom: 10px;
       a {
         margin-left: 5px;
         text-decoration: none;
         color: black;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 16px;
+        gap: 10px;
+        
       }
     }
     li:hover {
-      background-color: rgb(238, 97, 121);
+      background-color: palevioletred;
       color: white;
     }
   }
@@ -41,3 +48,8 @@
       color: white;
     }
   }
+
+  .active{
+    background-color: palevioletred !important;
+    color: white !important;
+}
