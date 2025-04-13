@@ -7,6 +7,7 @@ import { PiLessThan } from "react-icons/pi";
 import { PiGreaterThan } from "react-icons/pi";
 import { FaRegUserCircle } from "react-icons/fa";
 import EditModal from "./EditModel";
+
 const DetailedReport = () => {
   // State for users
   const [users, setUsers] = useState([]);
@@ -21,21 +22,22 @@ const DetailedReport = () => {
     setIsModalOpen(false);
   };
   // Fetch data when component mounts
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://67c824890acf98d0708518a5.mockapi.io/users"
-        );
-        const data = await res.json();
-        setUsers(data); // Set users state with the fetched data
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const res = await fetch(
+        "https://67c824890acf98d0708518a5.mockapi.io/users"
+      );
+      const data = await res.json();
+      setUsers(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
-  }, []); // Empty dependency array means this runs only once when the component mounts
+  }, []);
+  // Empty dependency array means this runs only once when the component mounts
 
   const getStatusBadge = (status) => {
     let className = "status-badge ";
@@ -128,6 +130,7 @@ const DetailedReport = () => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         user={editingUser}
+        onSaveSuccess={fetchData}
       />
       <div className="footer-detailed-report">
         <p>63 results</p>
